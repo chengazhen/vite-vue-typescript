@@ -42,4 +42,6 @@ declare module 'vue-router' {
 }
 ```
 
-[文档](https://router.vuejs.org/zh/guide/advanced/meta.html)
+本质就是通过扩展 module vue-router, 达到扩展 RouteMeta 的目的
+[module 扩展](https://blog.csdn.net/cukw6666/article/details/107983336)
+[vue-router 文档](https://router.vuejs.org/zh/guide/advanced/meta.html)
