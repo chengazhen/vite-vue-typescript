@@ -4,6 +4,12 @@ import router from './router/index'
 import App from './App.vue'
 const app = createApp(App)
 
-app.use(createPinia()).use(router)
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+import 'normalize.css'
+import './assets/css/style.css'
+
+app.use(createPinia()).use(router).use(ElementPlus)
 
 app.mount('#app')

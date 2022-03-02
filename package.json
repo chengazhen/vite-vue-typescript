@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "element-plus": "^2.0.4",
+    "normalize.css": "^8.0.1",
     "pinia": "^2.0.11",
     "qweather-icons": "^1.1.0",
     "vue": "^3.2.29",

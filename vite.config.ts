@@ -10,5 +10,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    proxy: {
+      '/dev-api': {
+        target: 'https://elm.cangdu.org',
+        rewrite: path => path.replace(/^\/dev-api/, '')
+      }
+    }
   }
 })

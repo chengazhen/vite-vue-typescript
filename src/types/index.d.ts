@@ -1,5 +1,6 @@
-export interface responseType {
-  code: string
-  location: object[]
-  refer: object
+export interface response {
+  status: number
+  data?: any
+  success?: string
+  message?: string
 }

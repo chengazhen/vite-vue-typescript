@@ -4,33 +4,32 @@ import axios, {
   type AxiosResponse
 } from 'axios'
 
-// 声明接口数据返回类型
-type response = {
-  message?: string
-  code: string
-  data?: any
-}
+import { ElMessage } from 'element-plus'
 
+// 声明接口数据返回类型
+import type { response } from '@/types'
 const request: AxiosInstance = axios.create({
-  url: import.meta.env.VITE_HOST,
+  baseURL: import.meta.env.VITE_HOST,
   withCredentials: false,
-  timeout: 5000
+  timeout: 50000
 })
 
 request.interceptors.request.use((config: AxiosRequestConfig) => {
-  config.headers = Object.assign(config.headers || {}, { token: 'token' })
-  config.params = Object.assign(config.params, {
-    key: 'e94ce65c8da94aa69947f2dc1d268596'
-  })
+  // config.headers = Object.assign(config.headers || {}, { token: 'token' })
   return config
 })
 
 request.interceptors.response.use(
   (response: AxiosResponse<response>) => {
     const { data } = response
-    if (data.code === '200') {
+    if (data instanceof Array || data.status === 1) {
       return response
     } else {
+      ElMessage({
+        showClose: true,
+        message: data.message,
+        type: 'error'
+      })
       return Promise.reject(data.message)
     }
   },
