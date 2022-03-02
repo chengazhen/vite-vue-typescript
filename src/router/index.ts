@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-
 const router: RouteRecordRaw[] = [
   {
     path: '/',
@@ -8,11 +7,17 @@ const router: RouteRecordRaw[] = [
     children: [
       {
         path: '/home',
+        meta: {
+          name: '首页'
+        },
         component: () => import('@/view/home/HomePage.vue')
       },
       {
         path: '/dashboard',
-        component: () => import('@/view/home/HomePage.vue')
+        component: () => import('@/view/home/HomePage.vue'),
+        meta: {
+          name: '面板'
+        },
       }
     ]
   },

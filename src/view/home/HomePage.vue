@@ -20,7 +20,7 @@ const tableData = ref<tableDataType[]>([])
 
 
 onMounted(async () => {
-  const { data } = await userList<tableDataType[]>({ offset: 0, limit: 20 })
+  const { data } = await userList({ offset: 0, limit: 20 })
   if (data) {
     tableData.value = data
   }

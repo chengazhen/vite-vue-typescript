@@ -29,7 +29,7 @@ import { useRouter, type Router } from 'vue-router';
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { ElForm } from 'element-plus'
-
+import { setData } from '@/utils/session'
 type FormInstance = InstanceType<typeof ElForm>
 const ruleFormRef = ref<FormInstance>()
 
@@ -52,6 +52,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       const { data } = await login(ruleForm)
       if (data.status === 1) {
         ElMessage(data.success)
+        setData('userId', Math.random().toString())
         router.replace('/')
       }
       console.log('error submit!')

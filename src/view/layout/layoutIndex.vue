@@ -5,7 +5,7 @@
         </el-aside>
         <el-container>
             <el-header>
-                <!-- <top /> -->
+                <HeadCrumbs />
             </el-header>
             <el-main>
                 <router-view />
@@ -16,10 +16,16 @@
 
 <script setup lang="ts">
 import LeftNav from './components/LeftNav.vue'
+import HeadCrumbs from './components/HeadCrumbs.vue';
 </script>
 
 <style scoped>
 .el-container {
     height: 100%;
+}
+.el-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
 }
 </style>
