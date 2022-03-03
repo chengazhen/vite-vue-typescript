@@ -9,9 +9,11 @@
         :total="total"
         @change="change"
     />
+    <BackTopVue :visibility-height="300" :back-position="50" />
 </template>
 
 <script setup lang="ts">
+import BackTopVue from '@/components/BackTop.vue';
 import { getOrderList } from '@/api/response';
 import { onMounted, ref, reactive } from 'vue';
 import DataPagination from '@/components/DataPagination.vue'
