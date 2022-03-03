@@ -7,10 +7,10 @@ import axios, {
 import { ElMessage } from 'element-plus'
 
 // 声明接口数据返回类型
-import type { response } from '@/types'
+import type { response } from '@/typing'
 const request: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_HOST,
-  withCredentials: false,
+  withCredentials: true,
   timeout: 50000
 })
 

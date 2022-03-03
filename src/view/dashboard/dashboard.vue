@@ -1,0 +1,95 @@
+<template>
+    <div class="chart-wrapper">
+        <v-chart class="chart" :option="option" />
+    </div>
+</template>
+
+<script setup lang="ts">
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { PieChart } from "echarts/charts";
+import { getAdminCount } from '@/api/response';
+import { onMounted, provide } from 'vue';
+import dayjs from 'dayjs'
+
+import {
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent
+} from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+import { ref } from "vue";
+
+use([
+    CanvasRenderer,
+    PieChart,
+    TitleComponent,
+    TooltipComponent,
+    LegendComponent
+]);
+
+provide(THEME_KEY, "dark")
+
+
+
+const option = ref({
+    title: {
+        text: "Traffic Sources",
+        left: "center"
+    },
+    tooltip: {
+        trigger: "item",
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: "vertical",
+        left: "left",
+        data: ["Direct", "Email", "Ad Networks", "Video Ads", "Search Engines"]
+    },
+    series: [
+        {
+            name: "Traffic Sources",
+            type: "pie",
+            radius: "55%",
+            center: ["50%", "60%"],
+            data: [] as { name: string, value: number }[],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: "rgba(0, 0, 0, 0.5)"
+                }
+            }
+        }
+    ]
+});
+
+
+
+onMounted(() => {
+    getData()
+})
+
+
+const getData = async () => {
+    const date: string = dayjs().format("YYYY-MM-DD")
+    const { data } = await getAdminCount(date)
+    if (data.status === 1) {
+        option.value.series[0]['data'] =
+            [{ value: 335, name: "Direct" },
+            { value: 310, name: "Email" },
+            { value: 234, name: "Ad Networks" },
+            { value: 135, name: "Video Ads" },
+            { value: 1548, name: "Search Engines" }]
+    }
+}
+
+
+
+</script>
+
+<style scoped>
+.chart-wrapper {
+    height: 400px;
+}
+</style>

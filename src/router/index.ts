@@ -14,9 +14,16 @@ const router: RouteRecordRaw[] = [
       },
       {
         path: '/dashboard',
-        component: () => import('@/view/home/HomePage.vue'),
+        component: () => import('@/view/dashboard/dashboard.vue'),
         meta: {
           name: '面板'
+        },
+      },
+      {
+        path: '/orderList',
+        component: () => import('@/view/order/orderIndex.vue'),
+        meta: {
+          name: '订单'
         },
       }
     ]

@@ -35,32 +35,25 @@ const change = () => {
 }
 
 const current = computed<number>({
-    get() {
-        return props.currentPage
-    }, set(value) {
-        change()
+    get: () => props.currentPage, set(value) {
         emits('update:currentPage', value)
+        change()
     }
 })
 
 const pageSize = computed({
-    get() {
-        return props.pageSize
-    }, set(value) {
-        change()
+    get: () => props.pageSize, set(value) {
         emits('update:pageSize', value)
+        change()
     }
 })
-
-
-// const propsRefs = toRefs(props)
 
 
 </script>
 
 <style scoped>
 .pagination-wrapper {
-    padding: 20px;
-    border: 1px solid rgb(216, 206, 206);
+    background: #fff;
+    padding: 32px 16px;
 }
 </style>

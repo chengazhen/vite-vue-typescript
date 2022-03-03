@@ -17,6 +17,10 @@
 <script setup lang="ts">
 import LeftNav from './components/LeftNav.vue'
 import HeadCrumbs from './components/HeadCrumbs.vue';
+import { userStore } from '@/stores/user';
+const store = userStore()
+console.log(store.$state);
+
 </script>
 
 <style scoped>

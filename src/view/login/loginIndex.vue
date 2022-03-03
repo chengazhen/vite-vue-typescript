@@ -29,6 +29,7 @@ import { useRouter, type Router } from 'vue-router';
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { ElForm } from 'element-plus'
+import { userStore } from '@/stores/user';
 import { setData } from '@/utils/session'
 type FormInstance = InstanceType<typeof ElForm>
 const ruleFormRef = ref<FormInstance>()
@@ -44,7 +45,7 @@ const rules = reactive({
 })
 
 const router: Router = useRouter()
-
+const store = userStore()
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate(async (valid) => {
@@ -52,6 +53,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
       const { data } = await login(ruleForm)
       if (data.status === 1) {
         ElMessage(data.success)
+        // 获取用户信息
+        store.userinfo()
         setData('userId', Math.random().toString())
         router.replace('/')
       }

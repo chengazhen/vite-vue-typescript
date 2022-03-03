@@ -1,14 +1,13 @@
 <template>
     <el-menu
-        default-active="/home"
+        :default-active="defaultActive"
         class="el-menu-vertical-demo"
         :collapse="false"
-        @open="handleOpen"
-        @close="handleClose"
         :router="true"
     >
         <el-menu-item index="/home">首页</el-menu-item>
         <el-menu-item index="/dashboard">面板</el-menu-item>
+        <el-menu-item index="/orderList">订单</el-menu-item>
         <!-- <el-sub-menu index="1">
             <template #title>
                 <el-icon>
@@ -31,13 +30,11 @@
 </template>
 
 <script lang="ts" setup>
+import { useRoute, type RouteLocationNormalized } from 'vue-router';
+const route: RouteLocationNormalized = useRoute()
+const defaultActive: string = route.fullPath
 
-const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
+
 </script>
 
 <style>
