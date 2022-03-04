@@ -25,8 +25,35 @@ const router: RouteRecordRaw[] = [
         meta: {
           name: '订单'
         },
-      }
+      },
+
     ]
+  },
+  {
+    path: '/components',
+    component: () => import('@/view/layout/layoutIndex.vue'),
+    meta: {
+      name: '组件'
+    },
+    children: [{
+      path: 'back-to-top',
+      component: () => import('@/view/components/back-to-top/back-to-top.vue'),
+      meta: {
+        name: '返回顶部'
+      }
+    }, {
+      path: 'mixin',
+      component: () => import('@/view/components/mixin/mixin.vue'),
+      meta: {
+        name: '小组件'
+      },
+    }, {
+      path: 'count-to',
+      component: () => import('@/view/components/count-to/count-to.vue'),
+      meta: {
+        name: 'count-to'
+      },
+    }]
   },
   {
     path: '/login',

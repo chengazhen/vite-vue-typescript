@@ -8,6 +8,9 @@
         <el-menu-item index="/home">首页</el-menu-item>
         <el-menu-item index="/dashboard">面板</el-menu-item>
         <el-menu-item index="/orderList">订单</el-menu-item>
+        <el-menu-item index="/components/back-to-top">返回顶部</el-menu-item>
+        <el-menu-item index="/components/mixin">小组件</el-menu-item>
+        <el-menu-item index="/components/count-to">count-to</el-menu-item>
         <!-- <el-sub-menu index="1">
             <template #title>
                 <el-icon>

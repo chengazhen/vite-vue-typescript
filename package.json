@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "dropzone": "^6.0.0-beta.2",
     "echarts": "^5.3.0",
     "element-plus": "^2.0.4",
     "normalize.css": "^8.0.1",
@@ -17,11 +18,13 @@
     "pinia": "^2.0.11",
     "qweather-icons": "^1.1.0",
     "vue": "^3.2.29",
+    "vue-count-to-next": "^1.0.1",
     "vue-echarts": "^6.0.2",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "@types/dropzone": "^5.7.4",
     "@types/node": "^16.11.25",
     "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^2.1.0",
