@@ -1,8 +1,6 @@
-import { type } from "os"
 
 function useRequestAnimationFrame() {
   let lastTime = 0
-  const prefixes = ['webkit', 'moz', 'ms', 'o']
 
   const isServer = typeof window === 'undefined'
 
@@ -21,16 +19,14 @@ function useRequestAnimationFrame() {
 
     requestAnimationFrame = window.requestAnimationFrame
     cancelAnimationFrame = window.cancelAnimationFrame
-    let prefix
+    console.log(typeof requestAnimationFrame);
+
     // 通过遍历各浏览器前缀，来得到requestAnimationFrame和cancelAnimationFrame在当前浏览器的实现形式
-    for (let i = 0; i < prefixes.length; i++) {
-      if (typeof requestAnimationFrame === 'object' && typeof cancelAnimationFrame === 'object') {
-        break
-      }
-      prefix = prefixes[i]
-      requestAnimationFrame = window[prefix + 'RequestAnimationFrame']
-      cancelAnimationFrame = window[prefix + 'CancelAnimationFrame'] || window[prefix + 'CancelRequestAnimationFrame']
+    if (typeof requestAnimationFrame !== 'function' && typeof cancelAnimationFrame !== 'function') {
+      requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame
+      cancelAnimationFrame = window.mozCancelAnimationFrame || window.cancelRequestAnimationFrame
     }
+
 
     // 如果当前浏览器不支持requestAnimationFrame和cancelAnimationFrame，则会退到setTimeout
     if (!requestAnimationFrame || !cancelAnimationFrame) {

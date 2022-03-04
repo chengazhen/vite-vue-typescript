@@ -5,7 +5,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, onMounted, SetupContext, watch, PropType, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  watch,
+  ref
+} from 'vue'
+import type { SetupContext, PropType } from 'vue'
 import { useRequestAnimationFrame } from './requestAnimationFrame'
 
 export interface IEasingFunction {
@@ -91,7 +99,12 @@ export default defineComponent({
   },
   setup(props: ICountToProps, context: SetupContext) {
     // 默认 变化函数
-    const defaultEasingFn = (t, b, c, d): number => {
+    const defaultEasingFn = (
+      t: number,
+      b: number,
+      c: number,
+      d: number
+    ): number => {
       return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
     }
     const easingFn: IEasingFunction = props.easingFn || defaultEasingFn // set default func to prop will cause en error
@@ -125,7 +138,8 @@ export default defineComponent({
     let paused = false // 是否暂停
     let requestAnimationFrameHandler = 0 // 动画函数句柄
 
-    const { requestAnimationFrame, cancelAnimationFrame } = useRequestAnimationFrame()
+    const { requestAnimationFrame, cancelAnimationFrame } =
+      useRequestAnimationFrame()
 
     // 是否为下降式渐变 计算属性 中途可能会改变状态
     const isCountDown = computed(() => {
@@ -140,15 +154,26 @@ export default defineComponent({
       if (props.useEasing) {
         // 使用自定义事件函数
         if (isCountDown.value) {
-          printVal = localStartVal - easingFn(progress, 0, localStartVal - props.endVal, localDuration)
+          printVal =
+            localStartVal -
+            easingFn(progress, 0, localStartVal - props.endVal, localDuration)
         } else {
-          printVal = easingFn(progress, localStartVal, props.endVal - localStartVal, localDuration)
+          printVal = easingFn(
+            progress,
+            localStartVal,
+            props.endVal - localStartVal,
+            localDuration
+          )
         }
       } else {
         if (isCountDown.value) {
-          printVal = localStartVal - (localStartVal - props.endVal) * (progress / localDuration)
+          printVal =
+            localStartVal -
+            (localStartVal - props.endVal) * (progress / localDuration)
         } else {
-          printVal = localStartVal + (props.endVal - localStartVal) * (progress / localDuration)
+          printVal =
+            localStartVal +
+            (props.endVal - localStartVal) * (progress / localDuration)
         }
       }
       if (isCountDown.value) {
