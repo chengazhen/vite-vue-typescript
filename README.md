@@ -1,6 +1,6 @@
 # 项目预览
 
-[地址](https://vite-vue-typescript.vercel.app/login)
+[地址](https://vite-vue-typescript.vercel.app)
 
 # 项目中遇到的问题
 
