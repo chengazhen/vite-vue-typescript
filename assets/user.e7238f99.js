@@ -1,1 +1,0 @@
-import{m as s}from"./vendor.dc807024.js";import{g as t}from"./response.90a9012b.js";const a=s("user",{state:()=>({uesrname:""}),actions:{setName(e){this.uesrname=e},async userinfo(){try{const{data:e}=await t();e.status===1&&console.log(e)}catch(e){console.log(e)}}}});export{a as u};

@@ -1,0 +1,1 @@
+import{m as s}from"./vendor.42b62a80.js";import{g as t}from"./response.085f196d.js";const a=s("user",{state:()=>({uesrname:""}),actions:{setName(e){this.uesrname=e},async userinfo(){try{const{data:e}=await t();e.status===1&&console.log(e)}catch(e){console.log(e)}}}});export{a as u};
