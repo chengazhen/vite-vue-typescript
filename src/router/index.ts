@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 const router: RouteRecordRaw[] = [
   {
     path: '/',
@@ -42,8 +42,8 @@ const router: RouteRecordRaw[] = [
         name: '返回顶部'
       }
     }, {
-      path: 'mixin',
-      component: () => import('@/view/components/mixin/mixin.vue'),
+      path: 'pan-thumb',
+      component: () => import('@/view/components/pan-thumb/pan-thumb.vue'),
       meta: {
         name: '小组件'
       },
@@ -58,10 +58,11 @@ const router: RouteRecordRaw[] = [
   {
     path: '/login',
     component: () => import('@/view/login/loginIndex.vue')
-  }
+  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/view/error-page/404.vue') },
 ]
 
 export default createRouter({
   routes: router,
-  history: createWebHistory()
+  history: createWebHashHistory()
 })

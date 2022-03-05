@@ -67,22 +67,23 @@ const option = ref({
 
 
 onMounted(() => {
-    getData()
+    // getData()
+    option.value.series[0]['data'] =
+        [{ value: 335, name: "Direct" },
+        { value: 310, name: "Email" },
+        { value: 234, name: "Ad Networks" },
+        { value: 135, name: "Video Ads" },
+        { value: 1548, name: "Search Engines" }]
 })
 
 
-const getData = async () => {
-    const date: string = dayjs().format("YYYY-MM-DD")
-    const { data } = await getAdminCount(date)
-    if (data.status === 1) {
-        option.value.series[0]['data'] =
-            [{ value: 335, name: "Direct" },
-            { value: 310, name: "Email" },
-            { value: 234, name: "Ad Networks" },
-            { value: 135, name: "Video Ads" },
-            { value: 1548, name: "Search Engines" }]
-    }
-}
+// const getData = async () => {
+//     const date: string = dayjs().format("YYYY-MM-DD")
+//     const { data } = await getAdminCount(date)
+//     // if (data.status === 1) {
+
+//     // }
+// }
 
 
 

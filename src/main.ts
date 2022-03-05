@@ -11,7 +11,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'normalize.css'
 import './assets/css/style.css'
 
-import '@/routerBefore'
+// import '@/routerBefore'
 
 app.use(createPinia()).use(router).use(ElementPlus, {
     locale: zhCn,
