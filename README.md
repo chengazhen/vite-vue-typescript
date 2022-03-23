@@ -134,3 +134,20 @@ type c = {
 ## 2022/3/5
 
 关于 vite 打包后白屏的问题, 需要配置下 base:'./' 相对路径
+
+## 2022/3/22
+
+watch 监听一个对象的属性, 例如监听 props 里面的一个属性, 必须通过一个函数来返回这个值
+
+```ts
+watch(
+  () => props.value,
+  (newValue: string, value) => {
+    if (!hasChange.value && hasInit.value) {
+      nextTick(() =>
+        window.tinymce.get(tinymceId.value).setContent(newValue || '')
+      )
+    }
+  }
+)
+```

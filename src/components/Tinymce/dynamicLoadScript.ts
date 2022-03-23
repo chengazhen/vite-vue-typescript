@@ -1,3 +1,4 @@
+import { getTinymce } from './getTinymce'
 type func = (p: string | null | Error, p2: HTMLElement) => void
 
 let callbacks: Array<func> | null = []
@@ -7,7 +8,7 @@ type callBackFunc = (p: string | null | Error, p2: HTMLElement) => void
 function loadedTinymce() {
   // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2144
   // check is successfully downloaded script
-  return window.tinymce
+  return getTinymce()
 }
 
 const dynamicLoadScript = (src: string, callback: callBackFunc) => {
