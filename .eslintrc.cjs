@@ -10,5 +10,16 @@ module.exports = {
   ],
   env: {
     'vue/setup-compiler-macros': true
+  },
+  rules: {
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: true,
+        types: {
+          '{}': false
+        }
+      }
+    ]
   }
 }

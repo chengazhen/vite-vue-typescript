@@ -34,7 +34,7 @@ const tinymceCDN =
 const props = withDefaults(
   defineProps<{
     id?: string
-    value?: string
+    modelValue: string
     toolbar?: string[]
     menubar?: string
     height?: string | number
@@ -43,14 +43,14 @@ const props = withDefaults(
   {
     id: 'vue-tinymce-' + new Date().getTime().toString(),
     toolbar: () => [],
-    value: '',
+    modelValue: '',
     height: 360,
     width: 'auto',
     menubar: 'file edit insert view format table'
   }
 )
 
-const emits = defineEmits(['input'])
+const emits = defineEmits(['update:modelValue'])
 
 const hasChange = ref(false)
 const hasInit = ref(false)
@@ -72,7 +72,7 @@ const containerWidth = computed(() => {
 })
 
 watch(
-  () => props.value,
+  () => props.modelValue,
   (newValue: string, value) => {
     if (!hasChange.value && hasInit.value) {
       nextTick(() =>
@@ -112,13 +112,13 @@ const initTinymce = () => {
     plugins: plugins,
     end_container_on_empty_block: true,
     init_instance_callback: (editor: Editor) => {
-      if (props.value) {
-        editor.setContent(props.value)
+      if (props.modelValue) {
+        editor.setContent(props.modelValue)
       }
       hasInit.value = true
       editor.on('NodeChange Change KeyUp SetContent', () => {
         hasChange.value = true
-        emits('input', editor.getContent())
+        emits('update:modelValue', editor.getContent())
       })
     },
     setup(editor: Editor) {
@@ -174,16 +174,6 @@ onDeactivated(() => {
   destroyTinymce()
 })
 
-// import tinymce from './tinymce.d.ts'
-
-// declare global {
-//   interface Window {
-//     tinymce: tinymce
-//   }
-// }
-
-// export {}
-
 const destroyTinymce = () => {
   const tinymce = getTinymce()?.get(tinymceId.value)
 
@@ -200,9 +190,15 @@ const setContent = (value: string) => {
   getTinymce()?.get(tinymceId.value).setContent(value)
 }
 
-const getContent = (value: string) => {
+const getContent = () => {
   getTinymce()?.get(tinymceId.value).getContent()
 }
+
+defineExpose({
+  setContent,
+  getContent,
+  tinymceId
+})
 </script>
 
 <style scoped lang="scss">

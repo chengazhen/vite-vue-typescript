@@ -833,7 +833,9 @@ export namespace ui {
     menu: Menu
   }
 
-  interface Collection {}
+  interface Collection {
+    [index: number | string]: unknown
+  }
 
   interface Container {
     add(items: any): Collection

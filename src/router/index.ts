@@ -65,7 +65,7 @@ const router: RouteRecordRaw[] = [
         path: 'tinymce',
         component: () => import('@/view/tinymce/tinymceIndex.vue'),
         meta: {
-          name: 'count-to'
+          name: '富文本编辑器'
         }
       }
     ]

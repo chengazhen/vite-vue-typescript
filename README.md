@@ -151,3 +151,7 @@ watch(
   }
 )
 ```
+
+## 2022/2/23
+
+今天把 tinymce 富文本实现了, 参考了 tinymce-vue 的代码 [地址](https://github.com/tinymce/tinymce-vue/blob/main/src/main/ts/components/Editor.ts)

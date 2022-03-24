@@ -14,19 +14,24 @@
       >
     </aside> -->
     <div>
-      <tinymce v-model="content" :height="300" />
+      <tinymce ref="tinymce" v-model:model-value="content" :height="300" />
     </div>
+    <h4>输入的内容</h4>
     <div class="editor-content" v-html="content" />
   </div>
 </template>
 
 <script setup lang="ts">
 import Tinymce from '@/components/Tinymce/TinymceIndex.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 const content =
-  ref(`<h1 style="text-align: center;">Welcome to the TinyMCE demo!</h1><p style="text-align: center; font-size: 15px;"><img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" /><ul>
+  ref(`<h1 style="text-align: center;">Welcome to the TinyMCE demo!</h1><p style="text-align: center; font-size: 15px;"><ul>
         <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li><li>Have a specific question? Visit the <a href="https://community.tinymce.com/forum/">Community Forum</a>.</li><li>We also offer enterprise grade support as part of <a href="https://tinymce.com/pricing">TinyMCE premium subscriptions</a>.</li>
       </ul>`)
+const tinymce = ref<InstanceType<typeof Tinymce>>()
+onMounted(() => {
+  console.log(tinymce.value?.getContent)
+})
 </script>
 
 <style scoped>
